@@ -55,12 +55,13 @@
       canvas.height = window.innerHeight;
       ctx.fillStyle = bar_color;
 
+      const bar_width = canvas.width / analyser.frequencyBinCount;
+
       analyser.getByteFrequencyData(freq_domain);
 
       for (let i = 0; i < analyser.frequencyBinCount; ++i) {
         const percent  = freq_domain[i] / 256;
         const bar_height = canvas.height * percent;
-        const bar_width = canvas.width / analyser.frequencyBinCount;
         const offset = canvas.height - bar_height;
 
         ctx.rect(i * bar_width, offset, bar_width, bar_height);
